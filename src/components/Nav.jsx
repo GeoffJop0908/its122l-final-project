@@ -23,25 +23,25 @@ export default function Nav() {
 
   useEffect(() => {
     if (isScrolled) {
-      controls.start({ y: '0px' });
+      controls.start({ opacity: 1, height: '5rem' });
     } else {
-      controls.start({ y: '-100px' });
+      controls.start({ opacity: 0, height: '7rem' });
     }
   }, [isScrolled, controls]);
 
   return (
     <>
       <motion.div
-        className="h-20 w-full bg-emerald-700 fixed top-0 z-[99]"
-        initial={{ y: '-100px' }}
+        className="w-full bg-emerald-700 fixed top-0 z-[99]"
+        initial={{ opacity: 0 }}
         animate={controls}
         transition={{ type: 'easeInOut' }}
       ></motion.div>
       <div
         className={cn(
-          'navbar none fixed p-3 px-12 z-[100] shadow-none transition-all ease-in-out',
+          'navbar none fixed p-3 pt-7 px-12 z-[100] shadow-none transition-all ease-in-out',
           {
-            'px-16': isScrolled,
+            'pt-3': isScrolled,
           }
         )}
       >
