@@ -5,16 +5,12 @@ import Home from './pages/Home.jsx';
 import Nav from './components/Nav.jsx';
 import { Outlet } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './components/RootLayout.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <>
-        <Nav />
-        <Outlet />
-      </>
-    ),
+    element: <RootLayout />,
     children: [{ index: true, element: <Home /> }],
   },
 ]);

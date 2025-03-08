@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function RightImageHero() {
   return (
-    <div className="hero bg-none min-h-screen p-12">
+    <div className="hero bg-none min-h-screen p-12" id="scroll-here">
       <div className="hero-content flex-col lg:flex-row-reverse gap-10">
         <img
           src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
