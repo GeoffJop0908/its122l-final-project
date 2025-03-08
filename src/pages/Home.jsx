@@ -1,8 +1,14 @@
 import '../App.css';
-import { Hero } from '../components/Hero';
+import RightImageHero from '../components/RightImageHero';
+import { SliderHero } from '../components/SliderHero';
 
 function Home() {
-  return <Hero />;
+  return (
+    <>
+      <SliderHero />
+      <RightImageHero />
+    </>
+  );
 }
 
 export default Home;
