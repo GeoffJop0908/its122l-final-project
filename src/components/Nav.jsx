@@ -12,7 +12,7 @@ export default function Nav() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = scrollY.get();
-      setIsScrolled(currentScrollY >= 300);
+      setIsScrolled(currentScrollY >= 200);
     };
 
     const unsubscribe = scrollY.onChange(handleScroll);
