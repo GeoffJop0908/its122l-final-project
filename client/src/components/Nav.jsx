@@ -46,31 +46,29 @@ export default function Nav() {
         )}
       >
         <div className="flex-1">
-          {/* <div className="size-5"> */}
           <Link to="/">
             <img src="gcf_logo.png" className="w-9" />
           </Link>
-          {/* </div> */}
         </div>
         <div className="flex-none">
           <ul
-            className="menu menu-horizontal px-1 flex items-center gap-4"
+            className="menu menu-horizontal px-1 flex items-center gap-8 text-white font-bold font-sans uppercase tracking-wide"
             style={{
               '--menu-active-bg': '#00000022',
               '--color-base-content': 'none',
             }}
           >
             <li>
-              <a>About</a>
+              <Link to="/about"><a>About</a></Link>
             </li>
             <li>
-              <a>Announcements</a>
+              <Link to="/announcement"><a>Announcements</a></Link>
             </li>
             <li>
-              <a>Appointment</a>
+              <Link to="/appointment"><a>Appointment</a></Link>
             </li>
             <li>
-              <a>Feedback</a>
+             <Link to="/feedback"><a>Feedback</a></Link>
             </li>
             <li>
               <a className="btn bg-white text-black border-black shadow-none">

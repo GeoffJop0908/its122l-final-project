@@ -5,6 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './context/AuthProvider.jsx';
 import RequireAuth from './components/RequireAuth.jsx';
 import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Announcement from './pages/Announcement.jsx';
+import Appointment from './pages/Appointment.jsx';
+import Feedback from './pages/Feedback.jsx';
 import RootLayout from './components/RootLayout.jsx';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration.jsx';
@@ -18,6 +22,10 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: 'about', element: <About />},
+      { path: 'announcement', element: <Announcement />},
+      { path: 'appointment', element: <Appointment/>},
+      { path: 'feedback', element: <Feedback />},
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Registration /> },
       {
