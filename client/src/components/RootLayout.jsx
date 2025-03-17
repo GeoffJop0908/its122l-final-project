@@ -7,7 +7,9 @@ export default function RootLayout() {
   return (
     <>
       <Nav />
-      <Outlet />
+      <div className="pt-28 h-screen bg-gray-200">
+        <Outlet />
+      </div>
     </>
   );
 }

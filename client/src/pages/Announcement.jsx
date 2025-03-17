@@ -3,12 +3,11 @@ import icon from '../assets/horn.svg';
 function Announcement() {
   return (
     <>
-      <div className="h-screen flex flex-col items-center justify-start">
+      <div className="flex flex-col items-center justify-start">
         {/*Navigation Bar Color/Background*/}
-        <div className="w-full h-[7rem] bg-[#222222]"></div>
 
         {/* Main Content Pane */}
-        <div className=" h-screen bg-gray-200 w-full flex flex-col items-center py-15">
+        <div className=" bg-gray-200 w-full flex flex-col items-center py-15">
           <h1 className="text-5xl font-bold text-black pb-10">Announcements</h1>
 
           <ul
