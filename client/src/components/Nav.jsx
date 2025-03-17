@@ -3,11 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useScroll } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import { cn } from '../lib/utils';
+import { useLocation } from 'react-router-dom';
 
 export default function Nav() {
+  const location = useLocation();
+  const scrollTrigger = location.pathname === '/' ? true : false;
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const controls = useAnimation();
+  console.log(isScrolled || !scrollTrigger);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +26,12 @@ export default function Nav() {
   }, [scrollY]);
 
   useEffect(() => {
-    if (isScrolled) {
+    if (isScrolled || !scrollTrigger) {
       controls.start({ opacity: 1, height: '5rem' });
     } else {
       controls.start({ opacity: 0, height: '7rem' });
     }
-  }, [isScrolled, controls]);
+  }, [isScrolled, scrollTrigger, controls]);
 
   return (
     <>
@@ -41,7 +45,7 @@ export default function Nav() {
         className={cn(
           'navbar none fixed p-3 pt-7 px-12 z-[100] shadow-none transition-all ease-in-out',
           {
-            'pt-3': isScrolled,
+            'pt-3': isScrolled || !scrollTrigger,
           }
         )}
       >
@@ -59,16 +63,24 @@ export default function Nav() {
             }}
           >
             <li>
-              <Link to="/about"><a>About</a></Link>
+              <Link to="/about">
+                <a>About</a>
+              </Link>
             </li>
             <li>
-              <Link to="/announcement"><a>Announcements</a></Link>
+              <Link to="/announcement">
+                <a>Announcements</a>
+              </Link>
             </li>
             <li>
-              <Link to="/appointment"><a>Appointment</a></Link>
+              <Link to="/appointment">
+                <a>Appointment</a>
+              </Link>
             </li>
             <li>
-             <Link to="/feedback"><a>Feedback</a></Link>
+              <Link to="/feedback">
+                <a>Feedback</a>
+              </Link>
             </li>
             <li>
               <a className="btn bg-white text-black border-black shadow-none">

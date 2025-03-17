@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import Admin from './pages/Admin.jsx';
 import Users from './pages/Users.jsx';
 import PersistLogin from './components/PersistLogin.jsx';
+import ReactLenis from 'lenis/react';
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,10 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'about', element: <About />},
-      { path: 'announcement', element: <Announcement />},
-      { path: 'appointment', element: <Appointment/>},
-      { path: 'feedback', element: <Feedback />},
+      { path: 'about', element: <About /> },
+      { path: 'announcement', element: <Announcement /> },
+      { path: 'appointment', element: <Appointment /> },
+      { path: 'feedback', element: <Feedback /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Registration /> },
       {
@@ -48,8 +49,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ReactLenis root options={{ lerp: 0.05 }}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ReactLenis>
   </StrictMode>
 );
