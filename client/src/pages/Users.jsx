@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import SimpleCard from '../components/SimpleCard';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useAutoLogout from '../hooks/useAutoLogout';
 
 export default function Users() {
+  useAutoLogout();
+
   const [users, setUsers] = useState();
 
   const axiosPrivate = useAxiosPrivate();

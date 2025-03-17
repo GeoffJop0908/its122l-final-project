@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import axios from '../api/axios';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
-const LOGIN_URL = '/login';
-
 const Login = () => {
-  const { setAuth } = useAuth();
-  const [email, setEmail] = useState('');
+  const { login } = useAuth();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  // const refresh = useRefreshToken();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,29 +17,12 @@ const Login = () => {
     e.preventDefault();
     setError('');
 
-    if (!email.trim() || !password.trim()) {
+    if (!username.trim() || !password.trim()) {
       setError('One of the inputs are missing!');
     }
 
     try {
-      // const response = await axios.post(REGISTER_URL, {
-      //   email: email,
-      //   password,
-      // });
-      // console.log(response.data);
-      const response = await axios.post(
-        LOGIN_URL,
-        { email, password },
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        }
-      );
-
-      console.log(response.data);
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ email, password, roles, accessToken });
+      await login({ username, password });
 
       // Add success logic here
       // navigate('/dashboard');
@@ -53,6 +34,8 @@ const Login = () => {
         setError('Incorrect email or password');
       } else if (err.response.status === 401) {
         setError('Unauthorized');
+      } else if (err.response.status === 500) {
+        setError('Email does not exist.');
       } else {
         setError('Login failed');
       }
@@ -65,10 +48,10 @@ const Login = () => {
         <h2 className="text-2xl font-bold mb-4">Login</h2>
         {error && <p className="text-red-500">{error}</p>}
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="w-full p-2 mb-2 border rounded"
           required
         />

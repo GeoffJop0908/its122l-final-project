@@ -11,6 +11,7 @@ import Registration from './pages/Registration.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Admin from './pages/Admin.jsx';
 import Users from './pages/Users.jsx';
+import PersistLogin from './components/PersistLogin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,11 +22,16 @@ const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Registration /> },
       {
-        element: <RequireAuth allowedRoles={['admin']} />,
+        element: <PersistLogin />,
         children: [
-          { path: 'dashboard', element: <Dashboard /> },
-          { path: 'admin', element: <Admin /> },
-          { path: 'users', element: <Users /> },
+          {
+            element: <RequireAuth allowedRoles={['admin']} />,
+            children: [
+              { path: 'dashboard', element: <Dashboard /> },
+              { path: 'admin', element: <Admin /> },
+              { path: 'users', element: <Users /> },
+            ],
+          },
         ],
       },
     ],
