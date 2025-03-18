@@ -1,68 +1,82 @@
-import icon from '../assets/horn.svg';
+import { useEffect, useState } from 'react';
+import db from '../assets/databases';
+import AnnouncementForm from '../components/AnnouncementForm';
+import { Query } from 'appwrite';
+import AnnounceCard from '../components/AnnounceCard';
 
 function Announcement() {
+  const [announcementCard, setAnnouncementCard] = useState([]);
+
+  useEffect(() => {
+    init();
+  }, [announcementCard]);
+
+  const init = async () => {
+    const result = await db.announcement.list([Query.orderDesc('$createdAt')]);
+    setAnnouncementCard(result.documents);
+  };
+
   return (
-    <>
-      <div className="flex flex-col items-center justify-start">
-        {/*Navigation Bar Color/Background*/}
-
-        {/* Main Content Pane */}
-        <div className=" bg-gray-200 w-full flex flex-col items-center py-15">
-          <h1 className="text-5xl font-bold text-black pb-10">Announcements</h1>
-
-          <ul
-            className="list bg-base-100 rounded-box shadow-md max-w-[70%] w-full max-h-[50%] overflow-y-auto"
-            data-lenis-prevent
-          >
-            <li className="list-row">
-              <div>
-                <img className="size-10 rounded-box" src={icon} />
-              </div>
-              <div>
-                <div>Knee Gears for sale</div>
-                <div className="text-xs uppercase font-semibold opacity-60">
-                  July 2, 1839
+    <div className="pt-10 mx-auto p-5" style={{ backgroundColor: '#42614f' }}>
+      <br className="my-[10rem]" />
+      <br className="my-[10rem]" />
+      <br className="my-[10rem]" />
+      <br className="my-[10rem]" />
+      <br className="my-[10rem]" />
+      <br className="my-[10rem]" />
+      <div className="text-center">
+        <div className="text-4xl text-white">Welcome to Announcements</div>
+        <div className="text-lg text-white">Find the latest news</div>
+        <br className="mt-4" />
+        <br className="mt-4" />
+        <br className="mt-4" />
+        <br className="mt-4" />
+      </div>
+      <div className="container pt-10 mx-auto p-4">
+        {/* CRUD for admin */}
+        <div className="bg-white shadow-md rounded-2xl p-6">
+          {/* Input Add */}
+          <div className="flex flex-col p-4 border border-gray-200 rounded-2xl ">
+            <AnnouncementForm setAnnouncementCard={setAnnouncementCard} />
+            {/* CRUD announcement container */}
+            <div>
+              {announcementCard.map((announcementCard, index) => (
+                <div
+                  key={announcementCard.$id}
+                  setAnnoCard={setAnnouncementCard}
+                  className={`mb-4 p-4 border-b border-gray-200`}
+                >
+                  <AnnounceCard
+                    key={announcementCard.$id}
+                    announcementData={announcementCard}
+                  />
                 </div>
-              </div>
-              <p className="list-col-wrap text-sm">
-                Fresh from the boat knee gears.
-              </p>
-            </li>
+              ))}
+            </div>
+          </div>
+        </div>
+        <br className="my-4" />
 
-            <li className="list-row">
-              <div>
-                <img className="size-10 rounded-box" src={icon} />
-              </div>
-              <div>
-                <div>Sample</div>
-                <div className="text-xs uppercase font-semibold opacity-60">
-                  January 1, 2000
+        {/* Displaying announcements - this div will serve as the announcement container and will contain all of the announcements */}
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <div className="text-2xl pt-4 mb-4">GCF Announcements</div>
+          {/* This div will load the announcements inside the container */}
+          {announcementCard.map(
+            (announcementCard) =>
+              announcementCard.isDisplayed && (
+                <div
+                  key={announcementCard.$id}
+                  className="mb-4 p-4 border-b border-gray-200"
+                >
+                  {announcementCard.AnnouncementString}
+                  <br className="my-4" />
+                  {announcementCard.AnnouncementBody}
                 </div>
-              </div>
-              <p className="list-col-wrap text-sm">
-                The Chamber verified the identity of the suspect and ensured
-                that he was clearly informed of the crimes he is alleged to have
-                committed and of his rights under the Rome Statute of the ICC in
-                a language he fully understands and speaks.
-              </p>
-            </li>
-
-            <li className="list-row">
-              <div>
-                <img className="size-10 rounded-box" src={icon} />
-              </div>
-              <div>
-                <div>Suntukan sa Mapua</div>
-                <div className="text-xs uppercase font-semibold opacity-60">
-                  March 17, 2025
-                </div>
-              </div>
-              <p className="list-col-wrap text-sm"></p>
-            </li>
-          </ul>
+              )
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
+import Home from './pages/Home.jsx';
+import Nav from './components/Nav.jsx';
+import { Outlet } from 'react-router-dom';
+import Announcement from './pages/Announcement.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './utils/AuthContext.jsx';
 import Home from './pages/Home.jsx';
