@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen text-black">
+    <motion.div
+      initial={{ y: 500 }}
+      animate={{ y: 0 }}
+      className="flex items-center justify-center pb-28 h-[85vh] text-black"
+    >
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
         {error && <p className="text-red-500">{error}</p>}
@@ -59,7 +64,7 @@ const Login = () => {
           Login
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

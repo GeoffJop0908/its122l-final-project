@@ -7,7 +7,7 @@ function About() {
         {/* Navigation Bar */}
 
         {/* Main Content Pane */}
-        <div className="bg-gray-200 w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center">
           <h1 className="text-5xl font-bold text-black">About The GCF</h1>
 
           <p className="text-lg text-black max-w-[60%] text-justify my-6 leading-relaxed">
@@ -36,7 +36,7 @@ function About() {
             to="https://www.gcf.org.ph/about"
             className="font-medium hover:underline"
           >
-            <button className="bg-black text-white py-3 px-6 rounded-md mt-6">
+            <button className="bg-jungle-green-600 text-white py-3 px-6 rounded-md mt-6">
               Learn More
             </button>
           </Link>

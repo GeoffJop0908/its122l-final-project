@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../utils/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 
 export default function Registration() {
   const [name, setName] = useState('');
@@ -35,7 +36,12 @@ export default function Registration() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen text-black">
+    <motion.div
+      initial={{ y: 500 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.75, type: 'spring' }}
+      className="flex items-center justify-center pb-28 text-black"
+    >
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         {error && <p className="text-red-500">{error}</p>}
@@ -83,6 +89,6 @@ export default function Registration() {
           Register
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
