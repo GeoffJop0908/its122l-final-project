@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import db from '../assets/databases';
-import AnnouncementForm from '../components/AnnouncementForm';
+import db from '../../assets/databases';
+import AnnouncementForm from '../../components/AnnouncementForm';
 import { Query } from 'appwrite';
-import AnnounceCard from '../components/AnnounceCard';
+import AnnounceCard from '../../components/AnnounceCard';
 import { useLenis } from 'lenis/react';
 
-function Announcement() {
+function AnnouncementsEdit() {
   const [announcementCard, setAnnouncementCard] = useState([]);
   const lenis = useLenis();
 
@@ -86,4 +86,4 @@ function Announcement() {
   );
 }
 
-export default Announcement;
+export default AnnouncementsEdit;

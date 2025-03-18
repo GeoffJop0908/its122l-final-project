@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleCard from '../components/SimpleCard';
+import SimpleCard from '../../components/SimpleCard';
 // import useRefreshToken from '../hooks/useRefreshToken';
 
 export default function Dashboard() {

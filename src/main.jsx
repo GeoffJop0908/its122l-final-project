@@ -2,20 +2,19 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import Home from './pages/Home.jsx';
-import Nav from './components/Nav.jsx';
-import { Outlet } from 'react-router-dom';
-import Announcement from './pages/Announcement.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './utils/AuthContext.jsx';
 import About from './pages/About.jsx';
 import Appointment from './pages/Appointment.jsx';
+import Announcement from './pages/Announcements.jsx';
 import Feedback from './pages/Feedback.jsx';
 import RootLayout from './components/RootLayout.jsx';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import Admin from './pages/Admin.jsx';
-import Users from './pages/Users.jsx';
+import Dashboard from './pages/protected/Dashboard.jsx';
+import Admin from './pages/protected/Admin.jsx';
+import Users from './pages/protected/Users.jsx';
+import AnnouncementsEdit from './pages/protected/AnnouncementsEdit.jsx';
 import PrivateRoute from './utils/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
@@ -31,11 +30,13 @@ const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Registration /> },
       {
+        path: '/admin',
         element: <PrivateRoute />,
         children: [
           { path: 'dashboard', element: <Dashboard /> },
           { path: 'admin', element: <Admin /> },
           { path: 'users', element: <Users /> },
+          { path: 'announcement', element: <AnnouncementsEdit /> },
         ],
       },
     ],
