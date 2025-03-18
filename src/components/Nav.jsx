@@ -4,6 +4,10 @@ import { useScroll } from 'motion/react';
 import { motion, useAnimation } from 'motion/react';
 import { cn } from '../lib/utils';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../utils/AuthContext';
+import SignUpButton from './SignUpButton';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 export default function Nav() {
   const location = useLocation();
@@ -11,6 +15,7 @@ export default function Nav() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const controls = useAnimation();
+  const { user } = useAuth();
   console.log(isScrolled || !scrollTrigger);
 
   useEffect(() => {
@@ -63,30 +68,31 @@ export default function Nav() {
             }}
           >
             <li>
-              <Link to="/about">
-                <a>About</a>
-              </Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/announcement">
-                <a>Announcements</a>
-              </Link>
+              <Link to="/announcement">Announcements</Link>
             </li>
             <li>
-              <Link to="/appointment">
-                <a>Appointment</a>
-              </Link>
+              <Link to="/appointment">Appointment</Link>
             </li>
             <li>
-              <Link to="/feedback">
-                <a>Feedback</a>
-              </Link>
+              <Link to="/feedback">Feedback</Link>
             </li>
-            <li>
-              <a className="btn bg-white text-black border-black shadow-none">
-                Sign Up
-              </a>
-            </li>
+            {user ? (
+              <li>
+                <LogoutButton />
+              </li>
+            ) : (
+              <>
+                <li>
+                  <SignUpButton />
+                </li>
+                <li>
+                  <LoginButton />
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

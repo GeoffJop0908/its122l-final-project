@@ -20,6 +20,11 @@ export function SliderHero() {
     lenis.start();
   };
 
+  const variants = {
+    initial: { width: '60%' },
+    hover: { width: '100%' },
+  };
+
   return (
     <ImagesSlider className="h-screen" images={images}>
       <motion.div
@@ -39,12 +44,25 @@ export function SliderHero() {
         <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
           Greenhills Christian <br /> Fellowship
         </motion.p>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-          <span className="hover:cursor-pointer" onClick={handleClick}>
+        <motion.button
+          initial="initial"
+          whileHover="hover"
+          className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4 hover:cursor-pointer"
+          onClick={handleClick}
+        >
+          <motion.div
+            variants={{
+              initial: { scale: 1 },
+              hover: { scale: 1.05 },
+            }}
+          >
             More →
-          </span>
-          <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-        </button>
+          </motion.div>
+          <motion.div
+            variants={variants}
+            className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent"
+          />
+        </motion.button>
       </motion.div>
     </ImagesSlider>
   );

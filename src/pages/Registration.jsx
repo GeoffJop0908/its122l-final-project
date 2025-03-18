@@ -1,63 +1,36 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../utils/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
 
 export default function Registration() {
-  const { register, seeUser } = useAuth();
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const { user, registerUser, error, setError } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
 
-    if (!email.trim() || !password.trim()) {
+    if (
+      !email.trim() ||
+      !name.trim() ||
+      !password1.trim() ||
+      !password2.trim()
+    ) {
       setError('One of the inputs are missing!');
-    }
-
-    try {
-      // const response = await axios.post(
-      //   REGISTER_URL,
-      //   { email, password, isAdmin },
-      //   {
-      //     headers: { 'Content-Type': 'application/json' },
-      //     withCredentials: true,
-      //   }
-      // );
-
-      // const loginResponse = await axios.post(
-      //   LOGIN_URL,
-      //   { email, password },
-      //   {
-      //     headers: { 'Content-Type': 'application/json' },
-      //     withCredentials: true,
-      //   }
-      // );
-
-      await register({ username, email, password, isAdmin });
-
-      // console.log(response.data);
-      // console.log(loginResponse.data);
-      // const accessToken = response?.data?.accessToken;
-      // const roles = response?.data?.roles;
-      // setAuth({ email, password, roles, accessToken });
-
-      // Add success logic here
-      // navigate('/dashboard');
-    } catch (err) {
-      if (!err?.response) {
-        console.log(err);
-        setError('No Server Response');
-      } else if (err.response?.status === 400) {
-        setError('Email already taken');
-      } else {
-        setError('Registration failed');
-      }
+    } else if (password1 !== password2) {
+      setError('Passwords do not match.');
+    } else {
+      registerUser({ name, email, password1, password2 });
     }
   };
 
@@ -66,14 +39,16 @@ export default function Registration() {
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         {error && <p className="text-red-500">{error}</p>}
+        <label>Username</label>
         <input
           type="text"
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="w-full p-2 mb-2 border rounded"
           required
         />
+        <label>Email</label>
         <input
           type="email"
           placeholder="Email"
@@ -82,30 +57,31 @@ export default function Registration() {
           className="w-full p-2 mb-2 border rounded"
           required
         />
+        <label>Password</label>
         <input
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter password"
+          value={password1}
+          onChange={(e) => setPassword1(e.target.value)}
+          className="w-full p-2 mb-2 border rounded"
+          required
+        />
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          placeholder="Confirm password"
+          value={password2}
+          onChange={(e) => setPassword2(e.target.value)}
           className="w-full p-2 mb-2 border rounded"
           required
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer"
+          className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer mt-5"
           onClick={handleSubmit}
         >
           Register
         </button>
-        <button className="btn" onClick={() => seeUser()}>
-          See User
-        </button>
-        <input
-          type="checkbox"
-          checked={isAdmin}
-          onClick={() => setIsAdmin(!isAdmin)}
-        ></input>
-        <label>Admin</label>
       </form>
     </div>
   );

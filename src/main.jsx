@@ -2,8 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { AuthProvider } from './context/AuthProvider.jsx';
-import RequireAuth from './components/RequireAuth.jsx';
+import { AuthProvider } from './utils/AuthContext.jsx';
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Announcement from './pages/Announcement.jsx';
@@ -15,8 +14,7 @@ import Registration from './pages/Registration.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Admin from './pages/Admin.jsx';
 import Users from './pages/Users.jsx';
-import PersistLogin from './components/PersistLogin.jsx';
-import ReactLenis from 'lenis/react';
+import PrivateRoute from './utils/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,16 +29,11 @@ const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Registration /> },
       {
-        element: <PersistLogin />,
+        element: <PrivateRoute />,
         children: [
-          {
-            element: <RequireAuth allowedRoles={['admin']} />,
-            children: [
-              { path: 'dashboard', element: <Dashboard /> },
-              { path: 'admin', element: <Admin /> },
-              { path: 'users', element: <Users /> },
-            ],
-          },
+          { path: 'dashboard', element: <Dashboard /> },
+          { path: 'admin', element: <Admin /> },
+          { path: 'users', element: <Users /> },
         ],
       },
     ],
@@ -49,10 +42,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ReactLenis root options={{ lerp: 0.05 }}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </ReactLenis>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

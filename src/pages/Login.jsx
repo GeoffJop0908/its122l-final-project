@@ -1,44 +1,30 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../utils/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { login } = useAuth();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  // const refresh = useRefreshToken();
 
+  const { user, loginUser, error, setError } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (!username.trim() || !password.trim()) {
+    const userInfo = { email, password };
+
+    if (!email.trim() || !password.trim()) {
       setError('One of the inputs are missing!');
-    }
-
-    try {
-      await login({ username, password });
-
-      // Add success logic here
-      // navigate('/dashboard');
-      navigate(from, { replace: true });
-    } catch (err) {
-      if (!err?.response) {
-        setError('No Server Response');
-      } else if (err.response.status === 400) {
-        setError('Incorrect email or password');
-      } else if (err.response.status === 401) {
-        setError('Unauthorized');
-      } else if (err.response.status === 500) {
-        setError('Email does not exist.');
-      } else {
-        setError('Login failed');
-      }
+    } else {
+      loginUser(userInfo);
     }
   };
 
@@ -47,14 +33,16 @@ const Login = () => {
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
         {error && <p className="text-red-500">{error}</p>}
+        <label>Email</label>
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full p-2 mb-2 border rounded"
           required
         />
+        <label>Password</label>
         <input
           type="password"
           placeholder="Password"
@@ -65,7 +53,7 @@ const Login = () => {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer"
+          className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer mt-5"
           onClick={handleSubmit}
         >
           Login

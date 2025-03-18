@@ -4,10 +4,10 @@ import { SliderHero } from '../components/SliderHero';
 
 function Home() {
   return (
-    <>
+    <div className="-mt-28">
       <SliderHero />
       <RightImageHero />
-    </>
+    </div>
   );
 }
 
