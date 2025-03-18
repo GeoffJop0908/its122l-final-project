@@ -5,10 +5,5 @@ import SimpleCard from '../components/SimpleCard';
 export default function Dashboard() {
   // const refresh = useRefreshToken();
 
-  return (
-    <SimpleCard>
-      Welcome User!
-      <button className="btn">See User</button>
-    </SimpleCard>
-  );
+  return <SimpleCard>Welcome User!</SimpleCard>;
 }
