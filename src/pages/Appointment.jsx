@@ -38,17 +38,15 @@ function Appointment() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-start">
+      <div className="flex flex-col items-center justify-start h-full text-stone-950">
         {/*Navigation Bar Color/Background*/}
 
         {/* Main Content Pane */}
-        <div className="bg-gray-200 w-full flex flex-col items-center py-15">
+        <div className="w-full flex flex-col items-center py-15">
           <div className="w-full max-w-4xl mx-auto px-8">
-            <h1 className="text-5xl font-bold text-black pb-10">
-              Book an Appointment
-            </h1>
+            <h1 className="text-5xl font-bold  pb-10">Book an Appointment</h1>
 
-            <p className="text-lg text-justify text-black mb-10 leading-relaxed">
+            <p className="text-lg text-justify  mb-10 leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. "Lorem
               ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -61,9 +59,14 @@ function Appointment() {
             <div className="flex flex-col md:flex-row pl-[8%]">
               {/* Left Column */}
               <div className="flex-1">
-                <div className="mb-2">Appointment Type:</div>
+                <div className="mb-2 text-jungle-green-950">
+                  Appointment Type:
+                </div>
                 <div className="mb-6">
-                  <select defaultValue="Appointment Type" className="select">
+                  <select
+                    defaultValue="Appointment Type"
+                    className="select bg-stone-700 text-stone-100 cursor-pointer"
+                  >
                     <option disabled={true}>Appointment Type</option>
                     <option>Wedding Ceremony</option>
                     <option>Christening/Baptism</option>
@@ -75,12 +78,12 @@ function Appointment() {
 
               {/* Right Column */}
               <div className="flex-1">
-                <div className="mb-2">Date:</div>
+                <div className="mb-2 text-jungle-green-950">Date:</div>
                 <div className="relative mb-6">
                   <button
                     ref={buttonRef}
                     onClick={toggleCalendar}
-                    className="input"
+                    className="input bg-stone-700 cursor-pointer text-stone-100"
                   >
                     {selectedDate}
                     <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -89,7 +92,7 @@ function Appointment() {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        className="text-gray-500"
+                        className="text-stone-100"
                         viewBox="0 0 16 16"
                       >
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
@@ -100,7 +103,7 @@ function Appointment() {
                   {showCalendar && (
                     <div
                       ref={calendarRef}
-                      className="absolute left-0 mt-1 bg-white rounded shadow-lg z-10"
+                      className="absolute left-0 mt-1 bg-stone-500 text-stone-100 rounded shadow-lg z-10"
                     >
                       <calendar-date
                         className="cally"
@@ -134,7 +137,7 @@ function Appointment() {
 
             {/* Book Appointment Button - Centered */}
             <div className="flex justify-center mt-8">
-              <button className="bg-black text-white py-3 px-20 rounded">
+              <button className="bg-stone-700 text-white py-3 px-20 rounded cursor-pointer">
                 Book
               </button>
             </div>

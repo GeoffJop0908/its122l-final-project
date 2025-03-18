@@ -15,7 +15,7 @@
     "axios": "^1.8.3",
     "cally": "^0.8.0",
     "clsx": "^2.1.1",
-    "daisyui": "^5.0.0",
+    "daisyui": "^5.0.6",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "lenis": "^1.2.3",

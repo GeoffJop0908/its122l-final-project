@@ -5,7 +5,7 @@ function Feedback() {
         {/*Navigation Bar Color/Background*/}
 
         {/* Main Content Pane */}
-        <div className="bg-gray-200 w-full flex flex-col items-center py-20">
+        <div className="w-full flex flex-col items-center py-20">
           {/* Form Container */}
           <div className="max-w-6xl w-full flex flex-row justify-between">
             {/* Left Section */}

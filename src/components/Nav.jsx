@@ -41,7 +41,7 @@ export default function Nav() {
   return (
     <>
       <motion.div
-        className="w-full bg-emerald-700 fixed top-0 z-[99]"
+        className="w-full bg-jungle-green-500 fixed top-0 z-[99]"
         initial={{ opacity: 0 }}
         animate={controls}
         transition={{ type: 'easeInOut' }}

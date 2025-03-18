@@ -4,7 +4,7 @@ import FooterFirst from './FooterFirst';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 pt-12 pb-8 px-4 md:px-8 static">
+    <footer className="bg-stone-200 pt-12 pb-8 px-4 md:px-8 static">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Church Information */}
         <FooterFirst

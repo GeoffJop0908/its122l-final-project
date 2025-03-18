@@ -1,2 +1,26 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+@theme {
+  --color-jungle-green-50: #eefbf5;
+  --color-jungle-green-100: #d6f5e5;
+  --color-jungle-green-200: #b1e9cf;
+  --color-jungle-green-300: #7dd8b5;
+  --color-jungle-green-400: #3cac84;
+  --color-jungle-green-500: #25a47b;
+  --color-jungle-green-600: #178463;
+  --color-jungle-green-700: #136952;
+  --color-jungle-green-800: #115442;
+  --color-jungle-green-900: #0f4537;
+  --color-jungle-green-950: #07271f;
+}
+
+.cally {
+  ::part(button day today) {
+    @apply bg-stone-400;
+  }
+}
+
+.list-row::after {
+  border-bottom: none;
+}

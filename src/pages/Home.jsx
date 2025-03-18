@@ -1,5 +1,5 @@
 import '../App.css';
-import RightImageHero from '../components/RightImageHero';
+import ImageHero from '../components/ImageHero';
 import { SliderHero } from '../components/SliderHero';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,8 @@ function Home() {
   return (
     <div className="-mt-28">
       <SliderHero />
-      <RightImageHero />
+      <ImageHero right />
+      <ImageHero className="bg-stone-300" />
     </div>
   );
 }
