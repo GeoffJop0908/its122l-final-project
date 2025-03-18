@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import db from '../../assets/databases';
 import AnnouncementForm from '../../components/AnnouncementForm';
-import { Query } from 'appwrite';
 import AnnounceCard from '../../components/AnnounceCard';
+import init from '../../appwrite/announcements';
 import { useLenis } from 'lenis/react';
 
 function AnnouncementsEdit() {
@@ -10,17 +9,12 @@ function AnnouncementsEdit() {
   const lenis = useLenis();
 
   useEffect(() => {
-    init();
-  }, [announcementCard]);
-
-  const init = async () => {
-    const result = await db.announcement.list([Query.orderDesc('$createdAt')]);
-    setAnnouncementCard(result.documents);
+    init(setAnnouncementCard);
     if (lenis) {
       lenis.resize();
       lenis.start();
     }
-  };
+  }, [announcementCard, lenis]);
 
   return (
     <div className="pt-10 mx-auto p-5" style={{ backgroundColor: '#42614f' }}>
