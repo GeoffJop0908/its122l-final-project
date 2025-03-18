@@ -46,11 +46,9 @@ export default function Nav() {
         )}
       >
         <div className="flex-1">
-          {/* <div className="size-5"> */}
           <Link to="/">
             <img src="gcf_logo.png" className="w-9" />
           </Link>
-          {/* </div> */}
         </div>
         <div className="flex-none">
           <ul
@@ -64,7 +62,7 @@ export default function Nav() {
               <a>About</a>
             </li>
             <li>
-              <a>Announcements</a>
+              <Link to="/Announcement">Announcements</Link>
             </li>
             <li>
               <a>Appointment</a>
