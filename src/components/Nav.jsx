@@ -56,7 +56,7 @@ export default function Nav() {
       >
         <div className="flex-1">
           <Link to="/">
-            <img src="gcf_logo.png" className="w-9" />
+            <img src="/gcf_logo.png" className="w-9" />
           </Link>
         </div>
         <div className="flex-none">

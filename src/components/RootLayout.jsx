@@ -23,7 +23,7 @@ export default function RootLayout() {
   return (
     <ReactLenis root options={{ lerp: 0.05 }}>
       <Nav />
-      <div className="py-28 h-screen bg-gray-200" id="content">
+      <div className="pt-28 bg-gray-200" id="content">
         <Outlet />
       </div>
       <Footer />
