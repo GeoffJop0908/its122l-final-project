@@ -3,9 +3,11 @@ import db from '../assets/databases';
 import AnnouncementForm from '../components/AnnouncementForm';
 import { Query } from 'appwrite';
 import AnnounceCard from '../components/AnnounceCard';
+import { useLenis } from 'lenis/react';
 
 function Announcement() {
   const [announcementCard, setAnnouncementCard] = useState([]);
+  const lenis = useLenis();
 
   useEffect(() => {
     init();
@@ -14,6 +16,10 @@ function Announcement() {
   const init = async () => {
     const result = await db.announcement.list([Query.orderDesc('$createdAt')]);
     setAnnouncementCard(result.documents);
+    if (lenis) {
+      lenis.resize();
+      lenis.start();
+    }
   };
 
   return (
@@ -34,7 +40,7 @@ function Announcement() {
       </div>
       <div className="container pt-10 mx-auto p-4">
         {/* CRUD for admin */}
-        <div className="bg-white shadow-md rounded-2xl p-6">
+        <div className="bg-zinc-800 shadow-md rounded-2xl p-6">
           {/* Input Add */}
           <div className="flex flex-col p-4 border border-gray-200 rounded-2xl ">
             <AnnouncementForm setAnnouncementCard={setAnnouncementCard} />
@@ -58,7 +64,7 @@ function Announcement() {
         <br className="my-4" />
 
         {/* Displaying announcements - this div will serve as the announcement container and will contain all of the announcements */}
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-zinc-800 shadow-md rounded-lg p-6">
           <div className="text-2xl pt-4 mb-4">GCF Announcements</div>
           {/* This div will load the announcements inside the container */}
           {announcementCard.map(

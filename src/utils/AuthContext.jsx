@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { account } from '../appwriteConfig';
+import { account } from '../appwrite/config.js';
 import { useContext, useState, useEffect } from 'react';
 import { ID } from 'appwrite';
 

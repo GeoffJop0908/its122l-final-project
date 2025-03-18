@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Nav from './Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import ReactLenis, { useLenis } from 'lenis/react';
@@ -10,10 +10,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (lenis) {
-      lenis.resize(); // Recalculate height // Reset scroll position
-    }
-    if (lenis) {
-      lenis.stop();
+      lenis.resize();
+      lenis.stop(); // Recalculate height // Reset scroll position
     }
     window.scrollTo(0, 0);
     if (lenis) {
