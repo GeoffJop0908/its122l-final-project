@@ -17,7 +17,7 @@
 
 .cally {
   ::part(button day today) {
-    @apply bg-stone-400;
+    @apply bg-jungle-green-500;
   }
 }
 
