@@ -10,6 +10,7 @@ import Error from '../../components/Error';
 import Success from '../../components/Success';
 import useAlertStore from '../../store/useAlertStore';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 export default function Users() {
   const [members, setMembers] = useState([]);
@@ -78,9 +79,24 @@ export default function Users() {
                 members.map((member, i) => (
                   <tr key={i}>
                     <th>{members.length - i - 1}</th>
-                    <td>{member.email}</td>
-                    <td>{member.name}</td>
-                    <td>{member.phone}</td>
+                    <EditableCell
+                      initialValue={member.email}
+                      userId={member.$id}
+                      fetchUsers={fetchUsers}
+                      type="email"
+                    />
+                    <EditableCell
+                      initialValue={member.name}
+                      userId={member.$id}
+                      fetchUsers={fetchUsers}
+                      type="name"
+                    />
+                    <EditableCell
+                      initialValue={member.phone}
+                      userId={member.$id}
+                      fetchUsers={fetchUsers}
+                      type="phone"
+                    />
                     <Roles
                       getBadges={getBadges}
                       roles={member.labels}
@@ -234,5 +250,87 @@ function Badge({ key, role, onRemove }) {
         </div>
       )}
     </div>
+  );
+}
+
+function EditableCell({ initialValue, userId, type, fetchUsers }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(initialValue);
+  const addMessage = useAlertStore((state) => state.addMessage);
+  const { updateUserName, updateUserPhone, updateUserEmail } = useAuth();
+
+  const handleSave = async (newValue) => {
+    try {
+      let result;
+      switch (type) {
+        case 'name':
+          result = await updateUserName(userId, newValue);
+          break;
+        case 'phone':
+          result = await updateUserPhone(userId, newValue);
+          break;
+        case 'email':
+          result = await updateUserEmail(userId, newValue);
+          break;
+        default:
+          return;
+      }
+
+      if (result) {
+        setValue(newValue);
+        addMessage(
+          `${
+            type.charAt(0).toUpperCase() + type.slice(1)
+          } updated successfully`,
+          'success'
+        );
+        fetchUsers();
+      } else {
+        setValue(initialValue);
+        addMessage(`Failed to update ${type}`, 'error');
+      }
+    } catch (error) {
+      setValue(initialValue);
+      addMessage(`Failed to update ${type}`, 'error');
+    }
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    setValue(initialValue);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSave(value);
+      setIsEditing(false);
+    } else if (e.key === 'Escape') {
+      setIsEditing(false);
+      setValue(initialValue);
+    }
+  };
+
+  return (
+    <td className="relative group cursor-pointer w-1/4">
+      {isEditing ? (
+        <input
+          type="text"
+          className="w-full p-1 border rounded focus:outline-none"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          autoFocus
+        />
+      ) : (
+        <div
+          className="flex items-center justify-between w-full"
+          onClick={() => setIsEditing(true)}
+        >
+          <span>{value || 'N/A'}</span>
+          <AiOutlineEdit className="size-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+        </div>
+      )}
+    </td>
   );
 }

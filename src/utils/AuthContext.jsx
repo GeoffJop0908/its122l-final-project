@@ -136,6 +136,60 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const updateUserName = async (userId, name) => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID,
+        JSON.stringify({ name }), // Data
+        false, // Synchronous execution
+        `/users/${userId}/name`, // Path
+        'PATCH', // Method
+        { 'Content-Type': 'application/json' } // Headers
+      );
+
+      return JSON.parse(response.responseBody);
+    } catch (error) {
+      console.error('Error updating user name:', error);
+      return null;
+    }
+  };
+
+  const updateUserPhone = async (userId, phone) => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID,
+        JSON.stringify({ phone }),
+        false,
+        `/users/${userId}/phone`,
+        'PATCH',
+        { 'Content-Type': 'application/json' }
+      );
+
+      return JSON.parse(response.responseBody);
+    } catch (error) {
+      console.error('Error updating user phone:', error);
+      return null;
+    }
+  };
+
+  const updateUserEmail = async (userId, email) => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID,
+        JSON.stringify({ email }),
+        false,
+        `/users/${userId}/email`,
+        'PATCH',
+        { 'Content-Type': 'application/json' }
+      );
+
+      return JSON.parse(response.responseBody);
+    } catch (error) {
+      console.error('Error updating user email:', error);
+      return null;
+    }
+  };
+
   const contextData = {
     user,
     loginUser,
@@ -146,6 +200,9 @@ export function AuthProvider({ children }) {
     listUsers,
     updateUserLabels,
     deleteUser,
+    updateUserName,
+    updateUserPhone,
+    updateUserEmail,
   };
 
   return (
