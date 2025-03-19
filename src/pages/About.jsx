@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function About() {
   return (
-    <div className="flex flex-col items-center justify-center h-full pt-10">
+    <div className="flex flex-col items-center justify-center h-[90vh] pt-10">
       {/* Navigation Bar */}
 
       {/* Main Content Pane */}

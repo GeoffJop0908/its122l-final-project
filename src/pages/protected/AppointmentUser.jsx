@@ -1,16 +1,16 @@
 import React from 'react';
 import db from '../../assets/databases';
 import { Query } from 'appwrite';
-
 import { useEffect, useState } from 'react';
 import AppointmentForm from '../../components/AppointmentForm';
+import { formatDate } from '../../lib/convertTimeDash';
 
 function AppointmentUser() {
   const [appointmentCard, setAppointmentCard] = useState([]);
 
   useEffect(() => {
     init();
-  }, [appointmentCard]);
+  }, []);
 
   const init = async () => {
     const result = await db.appointment.list([Query.orderDesc('$createdAt')]);
@@ -18,50 +18,71 @@ function AppointmentUser() {
   };
 
   return (
-    <div className="pt-10 mx-auto p-5" style={{ backgroundColor: '#42614f' }}>
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <div className="text-center">
-        <div className="text-4xl text-white">Welcome to Appointments</div>
-        <div className="text-lg text-white">Schedule an Appointment</div>
-        <br className="mt-4" />
-        <br className="mt-4" />
-        <br className="mt-4" />
-        <br className="mt-4" />
+    <div className="pt-10 p-30 bg-stone-200">
+      <div className="text-stone-950">
+        <div className="text-4xl">Appointments</div>
+        <div className="text-lg">Schedule an Appointment</div>
       </div>
-      <div className="container pt-10 mx-auto p-4">
+      <div className="pt-10">
         {/* CRUD for users to appoint */}
-        <div className="bg-white shadow-md rounded-2xl p-6">
+        <div className="bg-jungle-green-800 shadow-md rounded-2xl p-6">
+          <div className="text-2xl mb-4">Schedule your appointment</div>
           {/* Input Add */}
-          <div className="flex flex-col p-4 border border-gray-200 rounded-2xl ">
-            <AppointmentForm setAppointmentCard={setAppointmentCard} />
-          </div>
+          <AppointmentForm setAppointmentCard={setAppointmentCard} />
         </div>
         <br className="my-4" />
 
         {/* Displaying appointments - this div will serve as the appointment container and will contain all of the appointments in view */}
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-jungle-green-800 shadow-md rounded-lg p-6">
           <div className="text-2xl pt-4 mb-4">GCF Appointments</div>
-          {/* This div will load the announcements inside the container */}
-          <div className="mb-2 pb-2 border-b border-gray-300 px-4 flex flex-row justify-between ">
-            <div>Title</div>
-            <div>Name</div>
-            <div>Date</div>
+          {/* daisyui table */}
+          <div
+            className="overflow-x-auto rounded-box border border-base-content/5 max-h-[50vh]"
+            data-lenis-prevent
+          >
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Purpose</th>
+                  <th>Description</th>
+                  <th>User</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {appointmentCard.length > 0 ? (
+                  appointmentCard.map((appointment, i) => (
+                    <tr key={appointment.$id}>
+                      <th>{appointmentCard.length - i - 1}</th>
+                      <td>{appointment.purpose}</td>
+                      <td>
+                        {appointment.description ? (
+                          appointment.description
+                        ) : (
+                          <span className="italic text-slate-300">
+                            No description
+                          </span>
+                        )}
+                      </td>
+                      <td>{appointment.user}</td>
+                      <td>{formatDate(appointment.date)}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      <span className="italic text-slate-300">
+                        No items in the database.
+                      </span>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
-          {appointmentCard.map((appointmentCard) => (
-            <div
-              key={appointmentCard.$id}
-              className="mb-4 p-4 border-b border-gray-200 flex flex-row justify-between "
-            >
-              <div>{appointmentCard.appointmentTitle}</div>
-              <div>{appointmentCard.appointmentName}</div>
-              <div>{appointmentCard.appointmentDate}</div>
-            </div>
-          ))}
         </div>
       </div>
     </div>

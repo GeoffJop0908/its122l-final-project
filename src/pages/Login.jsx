@@ -14,6 +14,7 @@ const Login = () => {
     if (user) {
       navigate('user/dashboard');
     }
+    setError('');
   }, []);
 
   const handleSubmit = async (e) => {

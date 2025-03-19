@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { IoHome } from 'react-icons/io5';
 import { MdEditCalendar } from 'react-icons/md';
 import { MdOutlineChat } from 'react-icons/md';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   return (

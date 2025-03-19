@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import init from '../appwrite/announcements';
 import { ImBullhorn } from 'react-icons/im';
 import { motion } from 'motion/react';
+import { convertTime } from '../lib/convertTime';
 
 function Announcement() {
   const [announcementCard, setAnnouncementCard] = useState([]);
@@ -16,26 +17,7 @@ function Announcement() {
       lenis.resize();
       lenis.start();
     }
-  }, [announcementCard, lenis]);
-
-  function convertTime(time) {
-    const date = new Date(time);
-
-    // Define options for date and time formatting
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const timeOptions = {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZoneName: 'short',
-    };
-
-    // Convert to human-readable format
-    const humanReadableDate = date.toLocaleDateString(undefined, dateOptions);
-    const humanReadableTime = date.toLocaleTimeString(undefined, timeOptions);
-
-    return `${humanReadableDate}, ${humanReadableTime}`;
-  }
+  }, [lenis]);
 
   return (
     <div className="flex flex-col items-center justify-center h-[90vh]">

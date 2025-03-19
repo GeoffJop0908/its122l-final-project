@@ -16,17 +16,14 @@ export default function FooterFirst({ header, items }) {
           </li>
         ))}
         <li className="flex space-x-3 items-center *:text-gray-500 *:hover:text-jungle-green-500 *:*:size-6">
-          <a href="#">
+          <a href="https://www.youtube.com/@GreenhillsChristianFellowship/featured">
             <FaYoutube />
           </a>
-          <a href="#">
+          <a href="https://www.facebook.com/GreenhillsChristianFellowship/">
             <FaFacebook />
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/explore/locations/265866077/greenhills-christian-fellowship-gcf/">
             <FaInstagram />
-          </a>
-          <a href="#">
-            <FaWhatsapp />
           </a>
         </li>
       </ul>

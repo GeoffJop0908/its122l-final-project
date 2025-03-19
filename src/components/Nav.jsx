@@ -16,7 +16,6 @@ export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const controls = useAnimation();
   const { user } = useAuth();
-  console.log(isScrolled || !scrollTrigger);
 
   useEffect(() => {
     const handleScroll = () => {
