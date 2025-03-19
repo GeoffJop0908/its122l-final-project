@@ -18,7 +18,7 @@ export default function AccountButton() {
         style={{ anchorName: '--anchor-1' } /* as React.CSSProperties */}
       >
         <div className="w-10 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg" />
         </div>
       </button>
       <ul
