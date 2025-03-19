@@ -11,21 +11,31 @@ function Home() {
       <SliderHero />
       <ImageHero
         right
-        text="GCF San Fernando Pampanga started in 1998, but was formally launched
-            on January 10, 1999 thru the collective efforts of missionary couple
-            Pastor Love and Sister Racquel Tira; and pioneer members Brother
-            Cesar Ocampo, and the couple Brother Mario and Sister Liz Dabu. In a
-            formal inaugural service conducted at Days Hotel, attended by the
-            leaders of the Conservative Baptist Association of the Philippines
-            (CBAP), GCF-Ortigas, and its then senior pastor Dr. Luis Pantoja,
-            Jr., GCF San Fernando was officially established to be a beacon of
-            the gospel in Central Luzon with a primary goal: to “KNOW CHRIST AND
-            MAKE HIM KNOWN."
-        image="/gcf.jpg"
-        header="We're glad you're here!"
-        button="Worship with us"
+        text="Greenhills Christian Fellowship exists to glorify GOD by making disciples who love GOD and love one another."
+        image="/mission.png"
+        header="Mission"
       />
-      <ImageHero className="bg-stone-300" />
+       <ImageHero
+        text="Lives and communities transformed through Christ (2 Cor. 5:17; Acts 2:42-47)."
+        image="/vision.jpg"
+        header="Vision"
+      />
+      <ImageHero
+        right
+        text= { <> <p> Grounded on God’s Word and sound interpretation </p>
+
+          <p> Christ-centered and intentional discipleship </p>
+
+          <p> Focus on God’s glory in worship and fervent prayer </p>
+
+          <p>Compassion for the lost and evangelism </p>
+
+          <p> Spiritual gifts based ministry and excellent service </p>
+
+          <p> Fellowship and sincere brotherly love </p> </>}
+        image="/corevalues.jpg"
+        header="Core Values"
+      />
     </div>
   );
 }

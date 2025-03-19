@@ -11,7 +11,7 @@ export default function ImageHero({
 }) {
   return (
     <div
-      className={cn('hero bg-stone-200 p-12 text-jungle-green-950', className)}
+      className={cn('hero bg-stone-200 p-12 text-jungle-green-950 h-[90vh]', className)}
       id="scroll-here"
     >
       <div
