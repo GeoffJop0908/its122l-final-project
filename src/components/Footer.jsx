@@ -28,9 +28,9 @@ export default function Footer() {
         <FooterSection
           header="Videos"
           items={[
-            { text: 'Watch Online', link: '#' },
-            { text: 'Sermons', link: '#' },
-            { text: 'All Videos', link: '#' },
+            { text: 'Watch Online', link: 'https://www.youtube.com/channel/UCKX3r7aHgnn2jtw2CKVWpeQ' },
+            { text: 'Sermons', link: 'https://www.youtube.com/@GreenhillsChristianFellowship/playlists' },
+            { text: 'All Videos', link: 'https://www.youtube.com/@GreenhillsChristianFellowship/videos' },
           ]}
         />
 
@@ -39,20 +39,10 @@ export default function Footer() {
           header="I'm New"
           items={[
             { text: 'About GCF', link: '#' },
-            { text: 'Growth Groups', link: '#' },
+
           ]}
         />
 
-        {/* Combined Right Sections
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> */}
-        {/* Be Involved Section */}
-        <FooterSection
-          header="Be Involved"
-          items={[
-            { text: 'Give', link: '#' },
-            { text: 'Life Journey', link: '#' },
-          ]}
-        />
 
         {/* Get in Touch Section */}
         <FooterSection
