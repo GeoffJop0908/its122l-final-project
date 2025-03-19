@@ -7,7 +7,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="-mt-28">
+    <div className="-mt-[10vh]">
       <SliderHero />
       <ImageHero right />
       <ImageHero className="bg-stone-300" />

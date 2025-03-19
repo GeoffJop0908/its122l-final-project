@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import SignUpButton from './SignUpButton';
 import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
+import AccountButton from './AccountButton';
 
 export default function Nav() {
   const location = useLocation();
@@ -50,7 +50,7 @@ export default function Nav() {
         className={cn(
           'navbar none fixed p-3 pt-7 px-12 z-[100] shadow-none transition-all ease-in-out',
           {
-            'pt-3': isScrolled || !scrollTrigger,
+            'pt-2': isScrolled || !scrollTrigger,
           }
         )}
       >
@@ -81,7 +81,7 @@ export default function Nav() {
             </li>
             {user ? (
               <li>
-                <LogoutButton />
+                <AccountButton />
               </li>
             ) : (
               <>
