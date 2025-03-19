@@ -33,17 +33,17 @@ export default function AccountButton() {
           link="user/dashboard"
         />
         <Item
-          icon={<MdEditCalendar />}
-          text="Appointment"
-          link="user/appointment"
-        />
-        <Item icon={<MdOutlineChat />} text="Feedback" link="user/feedback" />
-        <Item
           icon={<RiAdminLine />}
           text="Admin"
           link="/admin"
           roles={['admin']}
         />
+        <Item
+          icon={<MdEditCalendar />}
+          text="Appointment"
+          link="user/appointment"
+        />
+        <Item icon={<MdOutlineChat />} text="Feedback" link="user/feedback" />
         <Item
           icon={<MdTableChart />}
           text="Users"

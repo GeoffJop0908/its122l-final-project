@@ -5,9 +5,9 @@ import Home from './pages/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './utils/AuthContext.jsx';
 import About from './pages/About.jsx';
-import Appointment from './pages/Appointment.jsx';
+import AppointmentUser from './pages/protected/AppointmentUser.jsx';
 import Announcement from './pages/Announcements.jsx';
-import Feedback from './pages/Feedback.jsx';
+import FeedbackUser from './pages/protected/FeedbackUser.jsx';
 import RootLayout from './components/RootLayout.jsx';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration.jsx';
@@ -16,6 +16,8 @@ import Admin from './pages/protected/Admin.jsx';
 import Users from './pages/protected/Users.jsx';
 import AnnouncementsEdit from './pages/protected/AnnouncementsEdit.jsx';
 import PrivateRoute from './utils/PrivateRoute.jsx';
+import Appointment from './pages/Appointment.jsx';
+import Feedback from './pages/Feedback.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,8 +36,8 @@ const router = createBrowserRouter([
         element: <PrivateRoute />,
         children: [
           { path: 'dashboard', element: <Dashboard /> },
-          { path: 'appointment', element: <Appointment /> },
-          { path: 'feedback', element: <Feedback /> },
+          { path: 'appointment', element: <AppointmentUser /> },
+          { path: 'feedback', element: <FeedbackUser /> },
         ],
       },
       {
