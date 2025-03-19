@@ -47,12 +47,8 @@ function Appointment() {
             <h1 className="text-5xl font-bold  pb-10">Book an Appointment</h1>
 
             <p className="text-lg text-justify  mb-10 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. "Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat.
+            Schedule your appointment with ease. Choose a date and time that 
+            works for you, and let us take care of the rest. Book now to get started!
             </p>
 
             {/* Form Container */}
