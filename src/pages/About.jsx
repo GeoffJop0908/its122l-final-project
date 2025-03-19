@@ -43,11 +43,22 @@ function About() {
             </p>
 
             <p className="text-lg text-black text-justify my-6 leading-relaxed">
-            From 2015-2016 GCF-SF campaigned for a more vibrant spirituality and fellowship among its leaders and members, culminating with the theme: "Deeper in the Word, Wider in the World" in 2017. In early 2017, GCF San Fernando started GCF Guagua through the generous support of Deaconess Luz Jingco and family. In the same year, GCF San Fernando re-engineered its church structure, and positioned and renamed itself as GCF Pampanga-Central, highlighting its farther vision to establish and strengthen GCF Pampanga-North (GCF Angeles), GCF Pampanga-West (GCF Guagua & Lubao), and in the near future… GCF Pampanga-East (GCF Arayat & Mexico) and GCF Pampanga-South (GCF Apalit & Macabebe). In 2019, during its 20th Anniversary, the entire church of GCF PAMPANGA focused on putting everyone's efforts together for its battle cry: "20gether: Victory in Unity!" knowing that our victory is in Christ as we His church unite to follow Jesus and glorify God.
+            From 2015-2016 GCF-SF campaigned for a more vibrant spirituality and fellowship among its leaders and members, 
+            culminating with the theme: "Deeper in the Word, Wider in the World" in 2017. In early 2017, GCF San Fernando started 
+            GCF Guagua through the generous support of Deaconess Luz Jingco and family. In the same year, GCF San Fernando 
+            re-engineered its church structure, and positioned and renamed itself as GCF Pampanga-Central, highlighting its farther 
+            vision to establish and strengthen GCF Pampanga-North (GCF Angeles), GCF Pampanga-West (GCF Guagua & Lubao), and in the 
+            near future… GCF Pampanga-East (GCF Arayat & Mexico) and GCF Pampanga-South (GCF Apalit & Macabebe). In 2019, during its 20th Anniversary, the entire church of GCF PAMPANGA focused on putting everyone's efforts together for its battle cry: "20gether: Victory in Unity!" knowing that our victory is in Christ as we His church unite to follow Jesus and glorify God.
             </p>
 
             <p className="text-lg text-black text-justify my-6 leading-relaxed">
-            This year, GCF PAMPANGA as one Church is putting all faith and credit to God Almighty in expanding Vision 2020 beyond the numbers and objectives that we targeted ten years ago. The Lord is still at work in our Church and in our individual lives! Let us all work forward towards our future that Christ holds in His hands! Today, GCF Pampanga-Central continues to be a beacon of the Gospel of Christ in West Central Luzon. We will expand our vison for our church to be stronger, larger, and ever attempting to be like its Master in love, service, and purity. It will continuously look forward to a brighter future as it pursues its unchanging mission - "TO GLORIFY GOD BY MAKING DISCIPLES WHO LOVE GOD AND EACH OTHER."
+            This year, GCF PAMPANGA as one Church is putting all faith and credit to God Almighty in expanding Vision 2020 
+            beyond the numbers and objectives that we targeted ten years ago. The Lord is still at work in our Church and in 
+            our individual lives! Let us all work forward towards our future that Christ holds in His hands! Today, GCF 
+            Pampanga-Central continues to be a beacon of the Gospel of Christ in West Central Luzon. We will expand our vison 
+            for our church to be stronger, larger, and ever attempting to be like its Master in love, service, and purity. 
+            It will continuously look forward to a brighter future as it pursues its unchanging mission - 
+            "TO GLORIFY GOD BY MAKING DISCIPLES WHO LOVE GOD AND EACH OTHER."
             </p>
 
             <Link
