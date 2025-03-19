@@ -4,8 +4,8 @@ import FooterFirst from './FooterFirst';
 
 export default function Footer() {
   return (
-    <footer className="bg-stone-200 pt-12 pb-8 px-4 md:px-8 static">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+    <footer className="bg-stone-300 pt-12 pb-8 px-4 md:px-8 static">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Church Information */}
         <FooterFirst
           header="Greenhills Christian Fellowship"
@@ -28,21 +28,26 @@ export default function Footer() {
         <FooterSection
           header="Videos"
           items={[
-            { text: 'Watch Online', link: 'https://www.youtube.com/channel/UCKX3r7aHgnn2jtw2CKVWpeQ' },
-            { text: 'Sermons', link: 'https://www.youtube.com/@GreenhillsChristianFellowship/playlists' },
-            { text: 'All Videos', link: 'https://www.youtube.com/@GreenhillsChristianFellowship/videos' },
+            {
+              text: 'Watch Online',
+              link: 'https://www.youtube.com/channel/UCKX3r7aHgnn2jtw2CKVWpeQ',
+            },
+            {
+              text: 'Sermons',
+              link: 'https://www.youtube.com/@GreenhillsChristianFellowship/playlists',
+            },
+            {
+              text: 'All Videos',
+              link: 'https://www.youtube.com/@GreenhillsChristianFellowship/videos',
+            },
           ]}
         />
 
         {/* I'm New Section */}
         <FooterSection
           header="I'm New"
-          items={[
-            { text: 'About GCF', link: '#' },
-
-          ]}
+          items={[{ text: 'About GCF', link: '#' }]}
         />
-
 
         {/* Get in Touch Section */}
         <FooterSection

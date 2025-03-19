@@ -16,7 +16,7 @@ function Announcement() {
       lenis.resize();
       lenis.start();
     }
-  }, [announcementCard, lenis]);
+  }, [lenis]);
 
   function convertTime(time) {
     const date = new Date(time);

@@ -16,6 +16,7 @@ export default function Registration() {
     if (user) {
       navigate('user/dashboard');
     }
+    setError('');
   }, []);
 
   const handleSubmit = async (e) => {
