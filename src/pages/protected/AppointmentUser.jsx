@@ -10,7 +10,7 @@ function AppointmentUser() {
 
   useEffect(() => {
     init();
-  }, [appointmentCard]);
+  }, []);
 
   const init = async () => {
     const result = await db.appointment.list([Query.orderDesc('$createdAt')]);
