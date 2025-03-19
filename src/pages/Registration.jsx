@@ -40,7 +40,7 @@ export default function Registration() {
       initial={{ y: 500 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.75, type: 'spring' }}
-      className="flex items-center justify-center pb-28 text-black"
+      className="flex items-center justify-center h-[90vh] text-black"
     >
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Register</h2>

@@ -33,7 +33,7 @@ const Login = () => {
     <motion.div
       initial={{ y: 500 }}
       animate={{ y: 0 }}
-      className="flex items-center justify-center pb-28 h-[85vh] text-black"
+      className="flex items-center justify-center h-[90vh] text-black"
     >
       <form className="p-8 bg-white rounded-lg shadow-lg max-w-sm w-full">
         <h2 className="text-2xl font-bold mb-4">Login</h2>

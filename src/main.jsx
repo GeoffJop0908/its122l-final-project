@@ -34,9 +34,21 @@ const router = createBrowserRouter([
         element: <PrivateRoute />,
         children: [
           { path: 'dashboard', element: <Dashboard /> },
-          { path: 'admin', element: <Admin /> },
+          { path: 'appointment', element: <Appointment /> },
+          { path: 'feedback', element: <Feedback /> },
+        ],
+      },
+      {
+        path: '/admin',
+        element: <PrivateRoute roles={['admin', 'editor']} />,
+        children: [{ path: 'announcement', element: <AnnouncementsEdit /> }],
+      },
+      {
+        path: '/admin',
+        element: <PrivateRoute roles={['admin']} />,
+        children: [
+          { index: true, element: <Admin /> },
           { path: 'users', element: <Users /> },
-          { path: 'announcement', element: <AnnouncementsEdit /> },
         ],
       },
     ],

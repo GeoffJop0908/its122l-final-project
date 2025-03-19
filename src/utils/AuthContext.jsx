@@ -75,7 +75,10 @@ export function AuthProvider({ children }) {
     try {
       let accountDetails = await account.get();
       setUser(accountDetails);
-    } catch (error) {}
+      console.log(accountDetails);
+    } catch (error) {
+      console.error(error);
+    }
     setLoading(false);
     setError('');
   };

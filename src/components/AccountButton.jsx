@@ -20,15 +20,23 @@ export default function AccountButton() {
         </div>
       </button>
       <ul
-        className="dropdown dropdown-end menu w-60 rounded-box bg-jungle-green-950 shadow-sm text-stone-100"
+        className="dropdown dropdown-end menu w-60 rounded-box bg-jungle-green-950 shadow-sm text-stone-100 font-normal"
         popover="auto"
         id="popover-1"
         style={{ positionAnchor: '--anchor-1' } /* as React.CSSProperties */}
       >
-        <Item icon={<MdSpaceDashboard />} text="Dashboard" link="dashboard" />
-        <Item icon={<RiAdminLine />} text="Admin" link="admin" />
-        <Item icon={<MdTableChart />} text="Users" link="users" />
-        <Item icon={<ImBullhorn />} text="Annonunce" link="announcement" />
+        <Item
+          icon={<MdSpaceDashboard />}
+          text="Dashboard"
+          link="user/dashboard"
+        />
+        <Item icon={<RiAdminLine />} text="Admin" link="/admin" />
+        <Item icon={<MdTableChart />} text="Users" link="/admin/users" />
+        <Item
+          icon={<ImBullhorn />}
+          text="Annonunce"
+          link="/admin/announcement"
+        />
         <LogoutButton />
       </ul>
     </>
@@ -57,7 +65,7 @@ function Item({ icon, text, link }) {
   return (
     <li>
       <Link
-        to={`/user/${link}`}
+        to={link}
         className="text-base hover:text-jungle-green-500 capitalize"
       >
         <span className="size-6 [&_svg]:size-full">{icon}</span>
