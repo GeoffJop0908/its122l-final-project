@@ -56,7 +56,7 @@ export default function Calendar({ selectedDate, setSelectedDate }) {
       {showCalendar && (
         <div
           ref={calendarRef}
-          className="absolute left-0 mt-1 bg-jungle-green-950 text-stone-100 rounded shadow-lg z-10"
+          className="absolute left-1/2 transform -translate-x-1/2 mt-1 bg-jungle-green-950 text-stone-100 rounded shadow-lg z-10"
         >
           <calendar-date className="cally" onchange={handleDateChange}>
             <svg
