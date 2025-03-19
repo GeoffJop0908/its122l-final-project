@@ -9,6 +9,8 @@ import Appointment from './pages/Appointment.jsx';
 import Announcement from './pages/Announcements.jsx';
 import Feedback from './pages/Feedback.jsx';
 import RootLayout from './components/RootLayout.jsx';
+import Appointment from './pages/Appointment.jsx';
+import Feedback from './pages/Feedback.jsx';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration.jsx';
 import Dashboard from './pages/protected/Dashboard.jsx';
