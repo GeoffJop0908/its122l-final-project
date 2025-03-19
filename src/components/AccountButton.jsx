@@ -6,6 +6,8 @@ import { RiAdminLine } from 'react-icons/ri';
 import { MdTableChart } from 'react-icons/md';
 import { ImBullhorn } from 'react-icons/im';
 import { MdLogout } from 'react-icons/md';
+import { MdEditCalendar } from 'react-icons/md';
+import { MdOutlineChat } from 'react-icons/md';
 
 export default function AccountButton() {
   return (
@@ -30,12 +32,29 @@ export default function AccountButton() {
           text="Dashboard"
           link="user/dashboard"
         />
-        <Item icon={<RiAdminLine />} text="Admin" link="/admin" />
-        <Item icon={<MdTableChart />} text="Users" link="/admin/users" />
+        <Item
+          icon={<MdEditCalendar />}
+          text="Appointment"
+          link="user/appointment"
+        />
+        <Item icon={<MdOutlineChat />} text="Feedback" link="user/feedback" />
+        <Item
+          icon={<RiAdminLine />}
+          text="Admin"
+          link="/admin"
+          roles={['admin']}
+        />
+        <Item
+          icon={<MdTableChart />}
+          text="Users"
+          link="/admin/users"
+          roles={['admin']}
+        />
         <Item
           icon={<ImBullhorn />}
           text="Annonunce"
           link="/admin/announcement"
+          roles={['admin', 'editor']}
         />
         <LogoutButton />
       </ul>
@@ -61,16 +80,22 @@ function LogoutButton() {
   );
 }
 
-function Item({ icon, text, link }) {
-  return (
-    <li>
-      <Link
-        to={link}
-        className="text-base hover:text-jungle-green-500 capitalize"
-      >
-        <span className="size-6 [&_svg]:size-full">{icon}</span>
-        {text}
-      </Link>
-    </li>
-  );
+function Item({ icon, text, link, roles = [] }) {
+  const { user } = useAuth();
+
+  if (roles.length === 0 || roles.some((role) => user.labels.includes(role))) {
+    return (
+      <li>
+        <Link
+          to={link}
+          className="text-base hover:text-jungle-green-500 capitalize"
+        >
+          <span className="size-6 [&_svg]:size-full">{icon}</span>
+          {text}
+        </Link>
+      </li>
+    );
+  }
+
+  return null;
 }
