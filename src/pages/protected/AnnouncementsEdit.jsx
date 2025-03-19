@@ -25,8 +25,8 @@ function AnnouncementsEdit() {
       <br className="my-[10rem]" />
       <br className="my-[10rem]" />
       <div className="text-center">
-        <div className="text-4xl text-white">Welcome to Announcements</div>
-        <div className="text-lg text-white">Find the latest news</div>
+        <div className="text-5xl font-bold text-white pb-5">Welcome to Announcements</div>
+        <div className="text-2xl font-bold text-white">Find the latest news</div>
         <br className="mt-4" />
         <br className="mt-4" />
         <br className="mt-4" />
@@ -34,7 +34,7 @@ function AnnouncementsEdit() {
       </div>
       <div className="container pt-10 mx-auto p-4">
         {/* CRUD for admin */}
-        <div className="bg-zinc-800 shadow-md rounded-2xl p-6">
+        <div className="bg-white shadow-md rounded-2xl p-6">
           {/* Input Add */}
           <div className="flex flex-col p-4 border border-gray-200 rounded-2xl ">
             <AnnouncementForm setAnnouncementCard={setAnnouncementCard} />
@@ -58,7 +58,7 @@ function AnnouncementsEdit() {
         <br className="my-4" />
 
         {/* Displaying announcements - this div will serve as the announcement container and will contain all of the announcements */}
-        <div className="bg-zinc-800 shadow-md rounded-lg p-6">
+        <div className="bg-white shadow-md rounded-lg p-6">
           <div className="text-2xl pt-4 mb-4">GCF Announcements</div>
           {/* This div will load the announcements inside the container */}
           {announcementCard.map(

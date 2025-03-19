@@ -26,8 +26,8 @@ function AppointmentUser() {
       <br className="my-[10rem]" />
       <br className="my-[10rem]" />
       <div className="text-center">
-        <div className="text-4xl text-white">Welcome to Appointments</div>
-        <div className="text-lg text-white">Schedule an Appointment</div>
+        <div className="text-5xl font-bold text-white pb-5">Welcome to Appointments</div>
+        <div className="text-2xl font-bold text-white">Schedule an Appointment</div>
         <br className="mt-4" />
         <br className="mt-4" />
         <br className="mt-4" />

@@ -26,8 +26,8 @@ function FeedbackUser() {
       <br className="my-[10rem]" />
       <br className="my-[10rem]" />
       <div className="text-center">
-        <div className="text-4xl text-white">Welcome to Feedback Page</div>
-        <div className="text-lg text-white">
+        <div className="text-5xl font-bold text-white pb-5">Welcome to Feedback Page</div>
+        <div className="text-2xl font-bold text-white">
           Generate feedback to help us improve
         </div>
         <br className="mt-4" />
