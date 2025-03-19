@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../utils/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { RiAdminLine } from 'react-icons/ri';
 import { MdTableChart } from 'react-icons/md';
@@ -64,12 +64,18 @@ export default function AccountButton() {
 
 function LogoutButton() {
   const { logoutUser } = useAuth();
+  const navigate = useNavigate();
+
+  const logoutHandle = () => {
+    logoutUser();
+    navigate('/');
+  };
 
   return (
     <li>
       <a
         className="text-red-400 text-base hover:text-stone-100 capitalize"
-        onClick={logoutUser}
+        onClick={logoutHandle}
       >
         <span className="size-6 [&_svg]:size-full">
           <MdLogout />
