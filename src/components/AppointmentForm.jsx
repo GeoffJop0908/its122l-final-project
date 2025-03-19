@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import db from '../assets/databases';
 import Calendar from './Calendar';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { useAuth } from '../utils/AuthContext';
-
-const variants = {
-  initial: { opacity: 0, x: 0 },
-  error: { opacity: 1, x: [0, 50, -50, 0], transition: { duration: 0.25 } },
-  success: { opacity: 1, x: 0, transition: { duration: 0.25 } },
-  exit: { opacity: 0, x: 50 },
-};
+import Error from './Error';
+import Success from './Success';
 
 function AppointmentForm({ setAppointmentCard }) {
   const [purpose, setPurpose] = useState('');
@@ -115,7 +110,7 @@ function AppointmentForm({ setAppointmentCard }) {
           </button>
         </div>
       </div>
-      <div className="fixed bottom-5 z-100 flex flex-col gap-3">
+      <div className="fixed bottom-5 z-100 flex flex-col gap-3 ">
         <AnimatePresence>
           {messages.map((message, index) => {
             if (message.type === 'error') {
@@ -146,64 +141,6 @@ function Section({ header, placeholder, value, setChange }) {
         onChange={(e) => setChange(e.target.value)}
       />
     </div>
-  );
-}
-
-function Error({ message }) {
-  return (
-    <motion.div
-      variants={variants}
-      initial="initial"
-      animate="error"
-      exit="exit"
-      layout
-      role="alert"
-      className="alert alert-error"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 shrink-0 stroke-current"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-      <span>{message}</span>
-    </motion.div>
-  );
-}
-
-function Success({ message }) {
-  return (
-    <motion.div
-      variants={variants}
-      initial="initial"
-      animate="success"
-      exit="exit"
-      layout
-      role="alert"
-      className="alert alert-success"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 shrink-0 stroke-current"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-      <span>{message}</span>
-    </motion.div>
   );
 }
 

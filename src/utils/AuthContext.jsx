@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { account } from '../appwrite/config.js';
+import { account, functions } from '../appwrite/config.js';
 import { useContext, useState, useEffect } from 'react';
 import { ID } from 'appwrite';
 
@@ -82,6 +82,60 @@ export function AuthProvider({ children }) {
     setError('');
   };
 
+  const listUsers = async () => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID,
+        undefined, // Data
+        false, // Async execution (false if you want to wait for response)
+        '/users', // Path
+        'GET', // Method
+        undefined // Headers
+      );
+
+      return JSON.parse(response.responseBody); // Return parsed response
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      return null;
+    }
+  };
+
+  const updateUserLabels = async (userId, labels) => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID, // Function ID
+        JSON.stringify({ userId, labels }), // Data
+        false, // Synchronous execution
+        `/users/${userId}/labels`, // Path
+        'PUT', // Method
+        { 'Content-Type': 'application/json' } // Headers
+      );
+
+      return JSON.parse(response.responseBody);
+    } catch (error) {
+      console.error('Error updating user labels:', error);
+      return null;
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    try {
+      const response = await functions.createExecution(
+        import.meta.env.VITE_FUNCTION_ID,
+        undefined, // No extra data needed
+        false, // Synchronous execution
+        `/users/${userId}`, // API path
+        'DELETE', // HTTP method
+        { 'Content-Type': 'application/json' } // Headers
+      );
+      console.log(response);
+      return JSON.parse(response.responseBody);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      return null;
+    }
+  };
+
   const contextData = {
     user,
     loginUser,
@@ -89,6 +143,9 @@ export function AuthProvider({ children }) {
     registerUser,
     error,
     setError,
+    listUsers,
+    updateUserLabels,
+    deleteUser,
   };
 
   return (
