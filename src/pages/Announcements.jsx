@@ -1,10 +1,11 @@
 import { cn } from '../lib/utils';
 import { useLenis } from 'lenis/react';
 import { useEffect, useState } from 'react';
-import init from '../appwrite/announcements';
 import { ImBullhorn } from 'react-icons/im';
 import { motion } from 'motion/react';
 import { convertTime } from '../lib/convertTime';
+import db from '../assets/databases';
+import { Query } from 'appwrite';
 
 function Announcement() {
   const [announcementCard, setAnnouncementCard] = useState([]);
@@ -12,24 +13,31 @@ function Announcement() {
   const lenis = useLenis();
 
   useEffect(() => {
-    init(setAnnouncementCard, setIsLoading);
+    init(setAnnouncementCard);
     if (lenis) {
       lenis.resize();
       lenis.start();
     }
   }, [lenis]);
 
+  const init = async (setAnnouncementCard) => {
+    const result = await db.announcement.list([Query.orderDesc('$createdAt')]);
+    setAnnouncementCard(result.documents);
+    setIsLoading(false);
+  };
+
   return (
     <div className="relative min-h-screen">
       {/* Background Image Container */}
-      <div 
+      <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          opacity: 0.15
+          opacity: 0.15,
         }}
       />
 
@@ -79,10 +87,10 @@ function Announcement() {
                         <div className="text-sm text-gray-500 uppercase font-semibold">
                           {convertTime(announcementCard.$createdAt)}
                         </div>
+                        <p className="text-gray-600">
+                          {announcementCard.AnnouncementBody}
+                        </p>
                       </div>
-                      <p className="text-gray-600 line-clamp-1">
-                        {announcementCard.AnnouncementBody}
-                      </p>
                     </li>
                   )
               )}

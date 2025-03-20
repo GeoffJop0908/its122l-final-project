@@ -5,12 +5,11 @@ import { MdEdit, MdShield, MdPerson } from 'react-icons/md';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { FiPlusCircle } from 'react-icons/fi';
 import { IoMdCloseCircle } from 'react-icons/io';
-import { AnimatePresence } from 'motion/react';
-import Error from '../../components/Error';
-import Success from '../../components/Success';
+import { AnimatePresence, motion } from 'motion/react';
 import useAlertStore from '../../store/useAlertStore';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { AiOutlineEdit } from 'react-icons/ai';
+import Alerts from '../../components/Alerts';
 
 export default function Users() {
   const [members, setMembers] = useState([]);
@@ -36,13 +35,22 @@ export default function Users() {
     return (
       <div className="inline-flex gap-2 items-center">
         <Badge role="User" />
-        {roles.map((role, index) => (
-          <Badge
-            key={index}
-            role={role.charAt(0).toUpperCase() + role.slice(1)}
-            onRemove={handleRemoveRole}
-          />
-        ))}
+        <AnimatePresence>
+          {roles.map((role, index) => (
+            <motion.span
+              key={index}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 20, opacity: 0 }}
+              layout
+            >
+              <Badge
+                role={role.charAt(0).toUpperCase() + role.slice(1)}
+                onRemove={handleRemoveRole}
+              />
+            </motion.span>
+          ))}
+        </AnimatePresence>
       </div>
     );
   };
@@ -118,17 +126,7 @@ export default function Users() {
           </table>
         </div>
       </div>
-      <div className="fixed bottom-5 z-100 flex flex-col gap-3 left-1/2 transform -translate-x-1/2">
-        <AnimatePresence>
-          {messages.map((message, index) => {
-            if (message.type === 'error') {
-              return <Error key={index} message={message.message} />;
-            } else if (message.type === 'success') {
-              return <Success message={message.message} />;
-            }
-          })}
-        </AnimatePresence>
-      </div>
+      <Alerts messages={messages} />
     </div>
   );
 }
@@ -224,14 +222,13 @@ function Roles({ getBadges, roles, userId, fetchUsers }) {
   );
 }
 
-function Badge({ key, role, onRemove }) {
+function Badge({ role, onRemove }) {
   return (
     <div
       className={cn('badge badge-outline border-white relative group/badge', {
         'border-amber-300 text-amber-300': role === 'Admin',
         'border-jungle-green-300 text-jungle-green-300': role === 'Editor',
       })}
-      key={key}
     >
       {role === 'Editor' ? (
         <MdEdit />

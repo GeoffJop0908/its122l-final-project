@@ -1,7 +1,6 @@
 import React from 'react';
 import db from '../../assets/databases';
 import { Query } from 'appwrite';
-
 import { useEffect, useState } from 'react';
 import FeedbackForm from '../../components/FeedbackForm';
 
@@ -26,7 +25,9 @@ function FeedbackUser() {
       <br className="my-[10rem]" />
       <br className="my-[10rem]" />
       <div className="text-center">
-        <div className="text-5xl font-bold text-white pb-5">Welcome to Feedback Page</div>
+        <div className="text-5xl font-bold text-white pb-5">
+          Welcome to Feedback Page
+        </div>
         <div className="text-2xl font-bold text-white">
           Generate feedback to help us improve
         </div>
