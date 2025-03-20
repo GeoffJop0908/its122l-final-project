@@ -5,10 +5,15 @@ import { useEffect, useState } from 'react';
 import AppointmentForm from '../../components/AppointmentForm';
 import { formatDate } from '../../lib/convertTimeDash';
 import { useAuth } from '../../utils/AuthContext';
+import useAlertStore from '../../store/useAlertStore';
+import { AiOutlineEdit } from 'react-icons/ai';
+import Alerts from '../../components/Alerts';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 
 function AppointmentUser() {
   const [appointmentCard, setAppointmentCard] = useState([]);
   const { user } = useAuth();
+  const addMessage = useAlertStore((state) => state.addMessage);
 
   useEffect(() => {
     init();
@@ -22,6 +27,17 @@ function AppointmentUser() {
   const roles = ['admin', 'editor'];
 
   const isAllowed = roles.some((role) => user.labels.includes(role));
+
+  const handleDelete = async (id, message) => {
+    const result = await db.appointment.delete(id);
+
+    if (result) {
+      init();
+      addMessage(`${message} was deleted`, 'success');
+    } else {
+      addMessage('Failed to delete the announcement', 'error');
+    }
+  };
 
   return (
     <div className="pt-10 p-30 bg-stone-200">
@@ -56,6 +72,7 @@ function AppointmentUser() {
                     <th>Description</th>
                     <th>User</th>
                     <th>Date</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,18 +81,30 @@ function AppointmentUser() {
                     appointmentCard.map((appointment, i) => (
                       <tr key={appointment.$id}>
                         <th>{appointmentCard.length - i - 1}</th>
-                        <td>{appointment.purpose}</td>
-                        <td>
-                          {appointment.description ? (
-                            appointment.description
-                          ) : (
-                            <span className="italic text-slate-300">
-                              No description
-                            </span>
-                          )}
-                        </td>
+                        <EditableCell
+                          initialValue={appointment.purpose}
+                          id={appointment.$id}
+                          type="purpose"
+                          fetchData={init}
+                        />
+                        <EditableCell
+                          initialValue={appointment.description}
+                          id={appointment.$id}
+                          type="description"
+                          fetchData={init}
+                        />
                         <td>{appointment.user}</td>
                         <td>{formatDate(appointment.date)}</td>
+                        <td className="text-center">
+                          <button
+                            className="size-7 border-none bg-transparent text-red-400 hover:text-stone-300 active:text-stone-400 transition-all ease-in-out duration-300 cursor-pointer"
+                            onClick={() =>
+                              handleDelete(appointment.$id, appointment.purpose)
+                            }
+                          >
+                            <RiDeleteBin5Line className="size-full" />
+                          </button>
+                        </td>
                       </tr>
                     ))
                   ) : (
@@ -93,7 +122,100 @@ function AppointmentUser() {
           </div>
         )}
       </div>
+      <Alerts />
     </div>
+  );
+}
+
+function EditableCell({ initialValue, id, type, fetchData }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(initialValue);
+  const addMessage = useAlertStore((state) => state.addMessage);
+
+  const handleSave = async (newValue) => {
+    try {
+      let result;
+      switch (type) {
+        case 'purpose':
+          result = await db.appointment.update(id, {
+            purpose: newValue,
+          });
+          break;
+        case 'description':
+          result = await db.appointment.update(id, {
+            description: newValue,
+          });
+          break;
+        case 'date':
+          result = await db.appointment.update(id, {
+            date: newValue,
+          });
+          break;
+        default:
+          return;
+      }
+
+      if (result) {
+        setValue(newValue);
+        addMessage(
+          `${
+            type.charAt(0).toUpperCase() + type.slice(1)
+          } updated successfully`,
+          'success'
+        );
+        fetchData();
+      } else {
+        setValue(initialValue);
+        addMessage(`Failed to update ${type}`, 'error');
+      }
+    } catch (error) {
+      setValue(initialValue);
+      addMessage(`Failed to update ${type}`, 'error');
+    }
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    setValue(initialValue);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSave(value);
+      setIsEditing(false);
+    } else if (e.key === 'Escape') {
+      setIsEditing(false);
+      setValue(initialValue);
+    }
+  };
+
+  return (
+    <td className="relative group cursor-pointer">
+      {isEditing ? (
+        <textarea
+          className="textarea textarea-ghost !bg-transparent h-full w-full p-1 border rounded focus:outline-none resize-none"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          autoFocus
+        />
+      ) : (
+        <div
+          className="flex items-center justify-between w-full"
+          onClick={() => setIsEditing(true)}
+        >
+          <span className="flex-1">
+            {value || (
+              <span className="italic text-slate-300">
+                No information available
+              </span>
+            )}
+          </span>
+          <AiOutlineEdit className="size-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+        </div>
+      )}
+    </td>
   );
 }
 

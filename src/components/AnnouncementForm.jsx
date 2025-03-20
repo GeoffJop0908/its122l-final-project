@@ -1,7 +1,10 @@
 import React from 'react';
 import db from '../assets/databases';
+import useAlertStore from '../store/useAlertStore';
 
 function AnnouncementForm({ setAnnouncementCard }) {
+  const addMessage = useAlertStore((state) => state.addMessage);
+
   const handleAdd = async (e) => {
     e.preventDefault();
 
@@ -14,6 +17,7 @@ function AnnouncementForm({ setAnnouncementCard }) {
       const payload = { AnnouncementString, AnnouncementBody };
       const response = await db.announcement.create(payload);
       setAnnouncementCard((prevState) => [response, ...prevState]);
+      addMessage('The announcement has been posted', 'success');
 
       e.target.reset();
       document.getElementById('fields').close();

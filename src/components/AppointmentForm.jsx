@@ -1,29 +1,15 @@
 import React, { useState } from 'react';
 import db from '../assets/databases';
 import Calendar from './Calendar';
-import { AnimatePresence } from 'motion/react';
 import { useAuth } from '../utils/AuthContext';
-import Error from './Error';
-import Success from './Success';
+import useAlertStore from '../store/useAlertStore';
 
 function AppointmentForm({ setAppointmentCard }) {
   const [purpose, setPurpose] = useState('');
   const [description, setDescription] = useState('');
   const [selectedDate, setSelectedDate] = useState('Pick a Date');
-  const [messages, setMessages] = useState([]);
   const { user } = useAuth();
-
-  const addMessage = (message, type) => {
-    const id = Date.now(); // Unique ID for each error
-    setMessages((prevMessages) => [...prevMessages, { id, message, type }]);
-
-    // Remove the error after 5 seconds
-    setTimeout(() => {
-      setMessages((prevMessages) =>
-        prevMessages.filter((message) => message.id !== id)
-      );
-    }, 3000);
-  };
+  const addMessage = useAlertStore((state) => state.addMessage);
 
   const isPastDate = (dateString) => {
     const selected = new Date(dateString);
@@ -58,10 +44,7 @@ function AppointmentForm({ setAppointmentCard }) {
         const response = await db.appointment.create(payload);
         setAppointmentCard((prevState) => [response, ...prevState]);
 
-        addMessage(
-          `Item '${purpose}' has been added to the database.`,
-          'success'
-        );
+        addMessage(`Your appointment '${purpose}' has been sent`, 'success');
         setPurpose('');
         setDescription('');
         setSelectedDate('Pick a Date');
@@ -109,17 +92,6 @@ function AppointmentForm({ setAppointmentCard }) {
             Submit and Create an Appointment
           </button>
         </div>
-      </div>
-      <div className="fixed bottom-5 z-100 flex flex-col gap-3 ">
-        <AnimatePresence>
-          {messages.map((message, index) => {
-            if (message.type === 'error') {
-              return <Error key={index} message={message.message} />;
-            } else if (message.type === 'success') {
-              return <Success message={message.message} />;
-            }
-          })}
-        </AnimatePresence>
       </div>
     </form>
   );

@@ -206,7 +206,10 @@ function Roles({ getBadges, roles, userId, fetchUsers }) {
           ) : (
             unassignedRoles.map((role) => (
               <li key={role} onClick={() => handleClick([...roles, role])}>
-                <Badge role={role.charAt(0).toUpperCase() + role.slice(1)} />
+                <Badge
+                  role={role.charAt(0).toUpperCase() + role.slice(1)}
+                  onList
+                />
               </li>
             ))
           )}
@@ -222,7 +225,7 @@ function Roles({ getBadges, roles, userId, fetchUsers }) {
   );
 }
 
-function Badge({ role, onRemove }) {
+function Badge({ role, onRemove, onList = false }) {
   return (
     <div
       className={cn('badge badge-outline border-white relative group/badge', {
@@ -238,7 +241,7 @@ function Badge({ role, onRemove }) {
         <MdPerson />
       )}
       {role}
-      {role !== 'User' && (
+      {role !== 'User' && !onList && (
         <div
           className="absolute -top-2 -right-2 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 cursor-pointer"
           onClick={() => onRemove(role)}
@@ -288,7 +291,7 @@ function EditableCell({ initialValue, userId, type, fetchUsers }) {
       }
     } catch (error) {
       setValue(initialValue);
-      addMessage(`Failed to update ${type}`, 'error');
+      addMessage(`Failed to update ${type}: ${error}`, 'error');
     }
   };
 

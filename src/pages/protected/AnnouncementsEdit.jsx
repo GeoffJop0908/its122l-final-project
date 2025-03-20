@@ -9,7 +9,7 @@ import Alerts from '../../components/Alerts';
 import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-import { cn } from '../../lib/utils';
+import { convertTime } from '../../lib/convertTime';
 
 function AnnouncementsEdit() {
   const [announcementCard, setAnnouncementCard] = useState([]);
@@ -23,14 +23,13 @@ function AnnouncementsEdit() {
       lenis.resize();
       lenis.start();
     }
-  }, [announcementCard, lenis]);
+  }, [lenis]);
 
   const showAnnouncement = async (annId, isDisplayed) => {
     const result = await db.announcement.update(annId, {
       isDisplayed: !isDisplayed,
     });
     if (result) {
-      console.log(result);
       addMessage(
         `Visbility set to ${!isDisplayed ? 'visible' : 'hidden'}`,
         'success'
@@ -72,6 +71,8 @@ function AnnouncementsEdit() {
                   <th>ID</th>
                   <th>Title</th>
                   <th>Body</th>
+                  <th>Created at</th>
+                  <th>Modified at</th>
                   <th>Visibility</th>
                   <th>Actions</th>
                 </tr>
@@ -93,6 +94,8 @@ function AnnouncementsEdit() {
                         type="body"
                         fetchData={() => init(setAnnouncementCard)}
                       />
+                      <td>{convertTime(announcement.$createdAt)}</td>
+                      <td>{convertTime(announcement.$updatedAt)}</td>
                       <td>{announcement.isDisplayed ? 'Visible' : 'Hidden'}</td>
                       <td className="flex gap-2 items-center">
                         <button
@@ -138,7 +141,7 @@ function AnnouncementsEdit() {
           </div>
         </div>
       </div>
-      <Alerts messages={messages} />
+      <Alerts />
     </div>
   );
 }
