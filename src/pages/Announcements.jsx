@@ -86,6 +86,12 @@ function Announcement() {
                         </h2>
                         <div className="text-sm text-gray-500 uppercase font-semibold">
                           {convertTime(announcementCard.$createdAt)}
+                          {announcementCard.$createdAt ===
+                          announcementCard.$updatedAt
+                            ? ''
+                            : ` (Updated at ${convertTime(
+                                announcementCard.$updatedAt
+                              )})`}
                         </div>
                         <p className="text-gray-600">
                           {announcementCard.AnnouncementBody}
