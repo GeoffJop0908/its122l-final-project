@@ -17,24 +17,14 @@ function AnnouncementsEdit() {
   }, [announcementCard, lenis]);
 
   return (
-    <div className="pt-10 mx-auto p-5" style={{ backgroundColor: '#42614f' }}>
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <br className="my-[10rem]" />
-      <div className="text-center">
-        <div className="text-5xl font-bold text-white pb-5">Welcome to Announcements</div>
-        <div className="text-2xl font-bold text-white">Find the latest news</div>
-        <br className="mt-4" />
-        <br className="mt-4" />
-        <br className="mt-4" />
-        <br className="mt-4" />
+    <div className="pt-10 p-30 bg-stone-200">
+      <div className="text-stone-950 pb-10">
+        <div className="text-4xl">Announcements</div>
+        <div className="text-lg">Edit announcements</div>
       </div>
-      <div className="container pt-10 mx-auto p-4">
+      <div className="container pt-10 mx-auto p-4 bg-jungle-green-950">
         {/* CRUD for admin */}
-        <div className="bg-white shadow-md rounded-2xl p-6">
+        <div className="shadow-md rounded-2xl p-6 bg-jungle-green-800">
           {/* Input Add */}
           <div className="flex flex-col p-4 border border-gray-200 rounded-2xl ">
             <AnnouncementForm setAnnouncementCard={setAnnouncementCard} />
@@ -58,7 +48,7 @@ function AnnouncementsEdit() {
         <br className="my-4" />
 
         {/* Displaying announcements - this div will serve as the announcement container and will contain all of the announcements */}
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-jungle-green-800 shadow-md rounded-lg p-6">
           <div className="text-2xl pt-4 mb-4">GCF Announcements</div>
           {/* This div will load the announcements inside the container */}
           {announcementCard.map(
