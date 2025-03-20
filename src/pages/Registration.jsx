@@ -14,7 +14,7 @@ export default function Registration() {
 
   useEffect(() => {
     if (user) {
-      navigate('user/dashboard');
+      navigate('/');
     }
     setError('');
   }, []);

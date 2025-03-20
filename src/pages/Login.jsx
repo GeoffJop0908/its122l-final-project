@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('user/dashboard');
+      navigate('/');
     }
     setError('');
   }, []);
