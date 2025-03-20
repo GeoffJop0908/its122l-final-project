@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import db from '../assets/databases';
 
 function AnnouncementForm({ setAnnouncementCard }) {
-  const [showFields, setShowFields] = useState(false);
-
   const handleAdd = async (e) => {
     e.preventDefault();
 
@@ -36,7 +34,7 @@ function AnnouncementForm({ setAnnouncementCard }) {
           onClick={() => {
             document.getElementById('fields').showModal();
           }}
-          className="py-4 px-5 text-black rounded-full bg-green-300 hover:text-white active:text-white hover:bg-green-500 active:bg-green-700 my-4"
+          className="py-4 px-5 text-black rounded-full bg-jungle-green-300 hover:text-white active:text-white hover:bg-jungle-green-500 active:bg-jungle-green-700 my-4 cursor-pointer transition-all ease-in-out duration-300"
         >
           Create an Announcement
         </button>
