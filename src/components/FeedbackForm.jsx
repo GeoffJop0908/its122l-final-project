@@ -23,45 +23,51 @@ function FeedbackForm({ setFeedbackCard }) {
     };
 
     return (
-        <form onSubmit={handleAddFeed} id="feed-form" className="my-4 flex flex-col items-center">
-            <div className="flex flex-col items-center">
-            
-                <div className="container flex flex-col justify-between items-center">
-                <div className="mb-2">
-                    <div className="mb-4 text-xl font-bold">
-                        Feedback Title
-                    </div>
-                    <input
-                    type="text"
-                    name="feedTitle"
-                    placeholder="Enter title"
-                    className="mb-2 py-2 w-2xl mr-6 px-5 border border-gray-300 rounded-full"
-                    />
-                </div>
-                <div className="mb-2">
-                    <div className="mb-4 text-xl font-bold">
-                        Feedback Content
-                    </div>
-                    <input
-                    type="text"
-                    name="feedName"
-                    placeholder="Enter your feedback"
-                    className="mb-2 py-2 w-2xl mr-6 px-5 border border-gray-300 rounded-full"
-                    />
-                </div>
+    <form onSubmit={handleAddFeed} id="feed-form" className="my-4 flex flex-col items-center">
+       <div className="flex flex-col items-center justify-start h-[90vh]">
+        {/*Navigation Bar Color/Background*/}
 
-                <div className="mb-2">
-                    <button
-                    type="submit"
-                    className="py-4 focus:outline-2 focus:outline-offset-2 focus:outline-green-500 px-7 text-black border border-green-800 rounded-full bg-green-300 text-black hover:text-white active:text-white hover:bg-green-500 active:bg-green-700"
-                    >
-                    Submit and Generate Feedback
-                    </button>
-                </div>
-
-                </div>
-            
+        {/* Main Content Pane */}
+        <div className="w-full flex flex-col items-center py-20">
+          {/* Form Container */}
+          <div className="max-w-6xl w-full flex flex-row justify-between">
+            {/* Left Section */}
+            <div className="w-5/12">
+              <h1 className="text-5xl font-bold text-black mb-8">
+                Send us a Feedback
+              </h1>
+              <div className="w-120 h-30 bg-gray-300 flex items-center justify-center mb-7">
+                <span className="text-gray-500">Image Placeholder</span>
+              </div>
+              <p className="text-lg text-justify text-black mb-10 leading-relaxed">
+              We’d love to hear from you! Share your thoughts, suggestions, 
+              or experiences with us—your feedback helps us improve. Send us a message today!
+              </p>
             </div>
+
+            {/* Right Section */}
+            <div className="w-5/12 justify-center">
+              <fieldset className="fieldset mt-2">
+                <legend className="fieldset-legend text-lg">
+                  Username / Email:
+                </legend>
+                <input type="text" name="feedTitle" className="input w-full" />
+              </fieldset>
+
+              <fieldset className="fieldset mt-3">
+                <legend className="fieldset-legend text-lg">Feedback:</legend>
+                <textarea className="textarea w-full resize-none h-30" name="feedName"></textarea>
+              </fieldset>
+
+              <div className="flex justify-center w-full pt-5">
+                <button className="bg-black text-white py-3 px-10 rounded text-lg hover:bg-green-500 active:bg-gray-500" type="submit">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </form>
     );
 }
